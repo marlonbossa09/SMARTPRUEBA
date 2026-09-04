@@ -43,6 +43,7 @@ class UserService:
             first_name=data.first_name,
             last_name=data.last_name,
             password_hash=hash_password(data.password),
+            role=data.role,
         )
 
         try:
