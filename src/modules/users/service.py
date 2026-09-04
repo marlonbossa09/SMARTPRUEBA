@@ -22,6 +22,16 @@ class UserService:
         if user is None:
             raise UserNotFoundError(user_id)
         return user
+    
+    def delete_user(self, user_id: uuid.UUID) -> dict[str, str]:
+        user = self.repository.get_by_id(user_id)
+        if user is None:
+            raise UserNotFoundError(user_id)
+        
+        self.repository.delete_user(user)
+        self.repository.commit()
+        
+        return {"status": "success", "message": f"User {user_id} deleted successfully."}
 
     def register(self, data: UserCreate) -> User:
         email = data.email.lower()
