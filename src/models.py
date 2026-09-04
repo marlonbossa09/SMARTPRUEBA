@@ -8,5 +8,6 @@ debe añadirse aquí o el autogenerate no lo verá.
 from src.core.database import Base
 from src.modules.users.models import User
 from src.modules.products.models import Product
+from src.modules.orders.models import Order
 
-__all__ = ["Base", "User", "Product"]
+__all__ = ["Base", "User", "Product", "Order"]

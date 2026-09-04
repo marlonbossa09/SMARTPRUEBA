@@ -11,3 +11,5 @@ __pycache__/
 
 .env.example
 .claude/
+.smartprueba.pem
+smartprueba.pem

@@ -26,3 +26,8 @@ def create_product(
     current_user: Annotated[User, Depends(require_roles(UserRole.ADMIN, UserRole.SELLER))],
 ) -> ProductRead:
     return service.add_product(product, current_user.id)
+
+@router.post("/my-products", response_model=list[ProductRead])
+def read_my_products(service: ProductServiceDep, current_user: Annotated[User, Depends(require_roles(UserRole.ADMIN, UserRole.SELLER))]) -> list[ProductRead]:
+    return service.get_products_by_me(current_user)
+    

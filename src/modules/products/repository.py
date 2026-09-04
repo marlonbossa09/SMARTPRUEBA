@@ -28,6 +28,9 @@ class ProductRepository:
         self._db.add(product)
         self._db.flush()
         return product
+    
+    def get_products_by_me(self, user: User) -> list[Product]:
+        return self._db.scalars(select(Product).where(Product.user_id == user.id)).all()
 
     # --- Límites de transacción (unit of work mínima) ---
 

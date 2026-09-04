@@ -26,6 +26,9 @@ class ProductService:
         if product is None:
             raise ProductNotFoundError()
         return product
+
+    def get_products_by_me(self, user) -> list[Product]:
+        return self.repository.get_products_by_me(user)
     
     def add_product(self, product: ProductCreate, user_id: uuid.UUID) -> Product:
         name = product.name.lower()
