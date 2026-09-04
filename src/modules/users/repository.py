@@ -34,6 +34,10 @@ class UserRepository:
         self._db.add(user)
         self._db.flush()
         return user
+    
+    def delete_user(self, user: User) -> None:
+        self._db.delete(user)
+        self._db.flush()
 
     # --- Límites de transacción (unit of work mínima) ---
 
