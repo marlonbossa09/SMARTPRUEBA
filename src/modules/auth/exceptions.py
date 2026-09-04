@@ -15,3 +15,8 @@ class InactiveUserError(AppError):
 class InvalidTokenError(AppError):
     status_code = 401
     detail = "Could not validate credentials"
+
+
+class InsufficientPermissionsError(AppError):
+    status_code = 403
+    detail = "No tienes permiso para realizar esta acción"
