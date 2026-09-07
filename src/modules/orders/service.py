@@ -73,3 +73,18 @@ class OrderService:
         self.repository.refresh(order)
         logging.info("Orden creada: %s (usuario %s)", order.id, user_id)
         return order
+    
+
+    def change_order_status(
+        self, 
+        order_id: uuid.UUID, 
+        new_status: OrderStatus, 
+        current_user: User
+    ) -> Order:
+        # Opcional: Validar si current_user es ADMIN o dueño de la orden
+        
+        updated_order = self.repository.update_status(order_id, new_status)
+        if updated_order is None:
+            raise OrderNotFoundError(order_id)
+            
+        return updated_order

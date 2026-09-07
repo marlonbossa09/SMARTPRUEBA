@@ -15,6 +15,10 @@ class HealthResponse(BaseModel):
     database: str
 
 
+@router.get("/", summary="Bienvenido a SMARTPRUEBA", status_code=status.HTTP_200_OK)
+def api_functional() -> dict[str, str]:
+    return {"status": "Funcional"}
+
 @router.get(
     "/health",
     response_model=HealthResponse,

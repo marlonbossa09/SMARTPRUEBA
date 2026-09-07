@@ -10,4 +10,4 @@ from src.modules.users.models import User
 from src.modules.products.models import Product
 from src.modules.orders.models import Order
 
-__all__ = ["Base", "User", "Product", "Order"]
+__all__ = ["Base", "User", "Product", "Order", "Catalogs"]

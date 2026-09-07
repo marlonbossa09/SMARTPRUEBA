@@ -27,6 +27,8 @@ class OrderItemRead(BaseModel):
     quantity: int
     unit_price: float
 
+class OrderStatusUpdate(BaseModel):
+    order_status: OrderStatus
 
 class OrderRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)

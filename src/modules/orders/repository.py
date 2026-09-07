@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
+from src.modules.orders.enums import OrderStatus
 from src.modules.orders.models import Order, OrderItem
 
 
@@ -34,6 +35,22 @@ class OrderRepository:
         self._db.add(item)
         self._db.flush()
         return item
+    
+    def update_status(self, order_id: uuid.UUID, new_status: OrderStatus) -> Order | None:
+        # 1. Buscar la orden cargando sus relaciones si las necesitas en la respuesta
+        order = self._db.scalar(
+            select(Order)
+            .where(Order.id == order_id)
+            .options(selectinload(Order.items))
+        )
+        if not order:
+            return None
+
+        # 2. Actualizar el estado y hacer commit
+        order.order_status = new_status
+        self._db.commit()
+        self._db.refresh(order)
+        return order
 
     # --- Límites de transacción (unit of work mínima) ---
 
