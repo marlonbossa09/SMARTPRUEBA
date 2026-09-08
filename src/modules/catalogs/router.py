@@ -20,7 +20,7 @@ def public_catalogs(service: CatalogServiceDep,
         Query(description="Tipo de catálogo a consultar: 'orders', 'logs', 'users'")
     ] = None,
 ):
-    """Devuelve los valores de los catálogos registrados (OrderStatus, LogLevels, UserRole)."""
+    """Devuelve los valores de los catálogos registrados (OrderStatus, LogLevels, UserRole). No requiere ninguna validación token"""
     if type_catalog:
         return service.get_catalog_by_type(type_catalog)
     
