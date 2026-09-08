@@ -18,6 +18,7 @@ services:
       retries: 10
 
   web:
+    image: ghcr.io/marlonbossa09/smartprueba-web:latest
     build:
       context: .
       dockerfile: Dockerfile
